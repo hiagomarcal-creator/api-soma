@@ -2,11 +2,11 @@ import requests
 
 URL = "http://127.0.0.1:5000/api/soma"
 
-# Em GET, os parametros vao na "query string": ?a=2&b=3
-parametros = {"a": 2, "b": 3}
+# Em POST, os dados vao escondidos no corpo (body) da requisicao
+dados_corpo = {"a": 10, "b": 20}
 
-resposta = requests.get(URL, params=parametros)
+# Mudamos para requests.post e usamos json= para enviar os dados
+resposta = requests.post(URL, json=dados_corpo)
 
-print("Status:", resposta.status_code) # 200 = OK
-print("Cabecalhos:", dict(resposta.headers)) # metadados da resposta
-print("Corpo (JSON):", resposta.json()) # {'resultado': 5.0}
+print("Status:", resposta.status_code)
+print("Corpo (JSON):", resposta.json())
